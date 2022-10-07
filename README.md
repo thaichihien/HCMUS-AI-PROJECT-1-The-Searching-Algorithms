@@ -7,4 +7,4 @@ The project visualizes **5 search algorithms** :
 - Greedy-best first search
 - Graph-search A*
 
-****Note :*** *Read the report.pdf for more detail*
+****Note :*** *Read the report.pdf for more details*
