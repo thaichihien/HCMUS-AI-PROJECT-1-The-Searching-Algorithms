@@ -1,6 +1,6 @@
 # [HCMUS_AI] Project 1 : The Searching Algorithms
  
-The project visualizes **5 search algorithms** :
+The project visualizes **5 search algorithms**  using ***Python***:
 - Breadth-first search 
 - Uniform-cost search
 - Iterative deepening search
