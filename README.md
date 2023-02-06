@@ -14,7 +14,7 @@ The project visualizes **5 search algorithms**  using ***Python***:
 
 ## Custom style
 
-You can change colors, tutle icon at _visualization.py_
+You can change colors, turtle icon at _visualization.py_
 
 ## Usage
 
