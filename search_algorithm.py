@@ -1,5 +1,5 @@
 import random
-from visualization import Matrix
+from visualization import COLOR_VISITED_POINT_IDS, Matrix,COLOR_VISITED_POINT,COLOR_FINISHED_POINT
 from environment import BLOCKED,VISITED,np
 
 
@@ -17,7 +17,7 @@ class SearchAlgorithm:
         self.allpaths = {}
 
     #Breath First Search
-    def find_BFS(self,start_point,goal_point):
+    def find_BFS(self,start_point : tuple,goal_point : tuple):
         '''
         Breath First Search
         '''
@@ -41,9 +41,9 @@ class SearchAlgorithm:
             self.allpaths[current_move[0]] = current_move[1]
             expanded_cost += 1
             if current_move[0] != start:
-                self.visual.draw_square((current_move[0][1],current_move[0][0]),'#97E9EF')
+                self.visual.draw_square((current_move[0][1],current_move[0][0]),COLOR_VISITED_POINT)
             if current_move[0] == goal:
-                self.visual.draw_square((current_move[0][1],current_move[0][0]),'#D3008A')
+                self.visual.draw_square((current_move[0][1],current_move[0][0]),COLOR_FINISHED_POINT)
                 break
 
             for movefrom in self.moveset:
@@ -67,7 +67,7 @@ class SearchAlgorithm:
         return result,cost,expanded_cost
 
     #Uniform Cost Search
-    def find_UCS(self,start_point,goal_point):
+    def find_UCS(self,start_point : tuple,goal_point : tuple):
         '''
         Uniform Cost Search
         '''
@@ -92,11 +92,11 @@ class SearchAlgorithm:
             self.visited[current_move] = VISITED
             expanded_cost += 1
             if current_move != start:
-                self.visual.draw_square((current_move[1],current_move[0]),'#97E9EF')
+                self.visual.draw_square((current_move[1],current_move[0]),COLOR_VISITED_POINT)
             self.allpaths[current_move] = self.frontier[current_move]
             
             if current_move == goal:
-                self.visual.draw_square((current_move[1],current_move[0]),'#D3008A')
+                self.visual.draw_square((current_move[1],current_move[0]),COLOR_FINISHED_POINT)
                 break
 
             for movefrom in self.moveset:
@@ -129,7 +129,7 @@ class SearchAlgorithm:
         '''
         Iterative Deepening Search
         '''
-        self.list_color = ['#97E9EF','#3D8389']
+        self.list_color = [COLOR_VISITED_POINT,COLOR_VISITED_POINT_IDS]
         self.INDEX = False
 
 
@@ -199,7 +199,7 @@ class SearchAlgorithm:
             self.visited[current_move[0]] = VISITED
             expanded_cost += 1
             if current_move[0] == goal:
-                self.visual.draw_square((current_move[0][1],current_move[0][0]),'#D3008A')
+                self.visual.draw_square((current_move[0][1],current_move[0][0]),COLOR_FINISHED_POINT)
                 success = True
                 break
             if visualize and current_move[0] != start:
@@ -240,12 +240,12 @@ class SearchAlgorithm:
             
             self.allpaths[current_move[0]] = current_move[1]
             if current_move[0] == goal:
-                self.visual.draw_square((current_move[0][1],current_move[0][0]),'#D3008A')
+                self.visual.draw_square((current_move[0][1],current_move[0][0]),COLOR_FINISHED_POINT)
                 break
             self.visited[current_move[0]] = VISITED
             expanded_cost += 1
             if current_move[0] != start:
-                self.visual.draw_square((current_move[0][1],current_move[0][0]),'#97E9EF')
+                self.visual.draw_square((current_move[0][1],current_move[0][0]),COLOR_VISITED_POINT)
 
 
             #self.frontier.clear()
@@ -294,10 +294,10 @@ class SearchAlgorithm:
             self.visited[current_move[0]] = VISITED
             expanded_cost += 1
             if current_move[0] != start:
-                self.visual.draw_square((current_move[0][1],current_move[0][0]),'#97E9EF')
+                self.visual.draw_square((current_move[0][1],current_move[0][0]),COLOR_VISITED_POINT)
             
             if current_move[0] == goal:
-                self.visual.draw_square((current_move[0][1],current_move[0][0]),'#D3008A')
+                self.visual.draw_square((current_move[0][1],current_move[0][0]),COLOR_FINISHED_POINT)
                 break
             
             for movefrom in self.moveset:

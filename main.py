@@ -1,4 +1,3 @@
-
 import search_algorithm as sa,visualization as vs
 from environment import Maze,FileSystem
 
@@ -26,10 +25,10 @@ def information():
     text_pen.print_text((0,425),'Choose one of the algorithms below to find the path:',FONT_SIZE=14)
 
     note_block = vs.Block(ORIGIN_MENU)
-    note_block.print_block((50,130),"#00FFAB",30,'Starting Point')
-    note_block.print_block((250,130),"#FF0054",30,'Goal Point')
-    note_block.print_block((50,90),"#9772FB",30,'Obstacle Point')
-    note_block.print_block((250,90),"#97E9EF",30,'Visited Point')
+    note_block.print_block((50,130),vs.COLOR_START_POINT,30,'Starting Point')
+    note_block.print_block((250,130),vs.COLOR_END_POINT,30,'Goal Point')
+    note_block.print_block((50,90),vs.COLOR_OBSTACLE_POINT,30,'Obstacle Point')
+    note_block.print_block((250,90),vs.COLOR_VISITED_POINT,30,'Visited Point')
 
 
 
@@ -61,6 +60,7 @@ cost_path = 0
 cost_expanded = 0
 
 
+#set up buttons and corresponding functions
 button = (vs.Button(ORIGIN_MENU,'Breadth-first search'),
           vs.Button(ORIGIN_MENU,'Uniform-cost search'),
           vs.Button(ORIGIN_MENU,'Iterative deepening search'),
@@ -68,7 +68,6 @@ button = (vs.Button(ORIGIN_MENU,'Breadth-first search'),
           vs.Button(ORIGIN_MENU,'Graph-search A*')
           )
 
-#button_visual_IDS = vs.Button(ORIGIN_MENU,'Visualize IDS',shape='square',onetime=False)
 
 function_run = { 0:search.find_BFS,
                  1:search.find_UCS,
@@ -78,27 +77,24 @@ function_run = { 0:search.find_BFS,
                 }
 
 
-
+#set up buttons UI
 first_pos_button = (50,380)
 for i,butt in enumerate(button):
     butt.create((first_pos_button[0],first_pos_button[1] - 50*i))
 
-#button_visual_IDS.create((0,100))
+
+#main
 information()
-    
-run = False
 active = 0
 while True:
     try:
         for i,butt in enumerate(button):
             butt.update()
-            #button_visual_IDS.update()
+          
 
-            if butt.result() and not run:
+            if butt.result():
                 disable_allbuttons(butt,search,robot)
-                if i == 2:
-                    path_to_goal,cost_path,cost_expanded = function_run[i](input_resource.source(),input_resource.goal())
-                else:path_to_goal,cost_path,cost_expanded = function_run[i](input_resource.source(),input_resource.goal())
+                path_to_goal,cost_path,cost_expanded = function_run[i](input_resource.source(),input_resource.goal())
                 robot.play(path_to_goal)
                 cost_text.print_text((0,40),'Cost of the path : {0}'.format(cost_path),FONT_SIZE=15,mode = 'bold')
                 cost_text.print_text((0,10),'Cost of the expanded node : {0}'.format(cost_expanded),FONT_SIZE=15,mode = 'bold')
@@ -106,5 +102,3 @@ while True:
 
     except:
         break
-
-#vs.turtle.mainloop()

@@ -3,13 +3,24 @@ import turtle
 import numpy as np
 from environment import BLOCKED
 
+COLOR_START_POINT = '#00FFAB'
+COLOR_END_POINT = '#FF0054'
+COLOR_OBSTACLE_POINT = '#9772FB' 
+COLOR_VISITED_POINT = '#97E9EF'
+COLOR_VISITED_POINT_IDS = '#3D8389'
+COLOR_FINISHED_POINT = '#D3008A'
+ICON_TURTLE = 'robot.gif'
 
 screen = turtle.Screen()
 screen.setup(width= 1.0,height= 1.0)
 try:
-    screen.addshape('robot.gif')
+    screen.addshape(ICON_TURTLE)
 except:
     pass
+
+
+
+
 class Matrix:
     def __init__(self,origin =(0,0)) -> None:
         self.pen = turtle.Turtle()
@@ -61,7 +72,7 @@ class Matrix:
         self.pen.down()
 
         if IsBlock == BLOCKED:
-            self.pen.fillcolor("#9772FB")
+            self.pen.fillcolor(COLOR_OBSTACLE_POINT)
             self.pen.begin_fill()
 
             for i in range(4):
@@ -74,7 +85,7 @@ class Matrix:
                 self.pen.forward(self.size)           
                 self.pen.left(90)
 
-    def draw_start_goal(self,start,goal,start_color="#00FFAB",goal_color="#FF0054"):
+    def draw_start_goal(self,start,goal,start_color=COLOR_START_POINT,goal_color=COLOR_END_POINT):
         screen.tracer(0)
         self.draw_square(start,start_color)
         self.draw_square(goal,goal_color)
@@ -119,7 +130,7 @@ class Robot:
     
     def play(self,path):
         try:
-            self.pen.shape('robot.gif')
+            self.pen.shape(ICON_TURTLE)
         except:
             pass
         self.pen.showturtle()
