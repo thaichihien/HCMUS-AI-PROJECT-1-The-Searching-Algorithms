@@ -7,4 +7,8 @@ The project visualizes **5 search algorithms**  using ***Python***:
 - Greedy-best first search
 - Graph-search A*
 
+## Demo
+
+[Youtube demo video](https://youtu.be/6LfAM6cKOvM)
+
 ****Note :*** *Read the report.pdf for more details*
