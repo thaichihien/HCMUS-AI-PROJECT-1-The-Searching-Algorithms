@@ -7,7 +7,7 @@ from environment import BLOCKED
 screen = turtle.Screen()
 screen.setup(width= 1.0,height= 1.0)
 try:
-    screen.addshape('AI/Lab01-Search/robot.gif')
+    screen.addshape('robot.gif')
 except:
     pass
 class Matrix:
@@ -119,7 +119,7 @@ class Robot:
     
     def play(self,path):
         try:
-            self.pen.shape('AI/Lab01-Search/robot.gif')
+            self.pen.shape('robot.gif')
         except:
             pass
         self.pen.showturtle()

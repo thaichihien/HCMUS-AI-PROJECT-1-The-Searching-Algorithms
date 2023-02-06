@@ -4,7 +4,7 @@ from environment import Maze,FileSystem
 
 
 
-input_resource = FileSystem('AI/Lab01-Search/input.txt')
+input_resource = FileSystem('input.txt')
 ORIGIN_MATRIX = (-150,-300)
 ORIGIN_MENU = (-700,-300)
 
